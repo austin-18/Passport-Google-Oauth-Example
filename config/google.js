@@ -12,6 +12,10 @@ passport.use(new GoogleStrategy({
   },
   function(token, tokenSecret, profile, done) {
 
+    console.log(token);
+    console.log(tokenSecret);
+    console.log(profile);
+
     const searchQuery = {
       name: profile.displayName
     };
