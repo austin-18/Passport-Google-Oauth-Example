@@ -25,7 +25,7 @@ router.get('/google/callback',
     res.send(req.user);
   });
 
-router.get('/profile', checkGoogleAuth(), (req, res) => {
+router.get('/profile', checkGoogleAuth, (req, res) => {
   res.send('you are successfully authenticated')
 })
 

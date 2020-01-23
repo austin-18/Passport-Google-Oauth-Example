@@ -1,4 +1,4 @@
-const passport = require('passport');
+const {isAuthenticated} = require('passport');
 
 // Passport checking if user is already logged in (has token)
 exports.checkGoogleAuth = (req, res, next) => {
@@ -8,6 +8,6 @@ exports.checkGoogleAuth = (req, res, next) => {
       return next();
     } else {
       // if they aren't redirect them to the home page
-      res.redirect('/notAuth');
+      res.redirect('notAuth');
     }
   }

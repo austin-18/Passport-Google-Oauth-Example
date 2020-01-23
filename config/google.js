@@ -9,19 +9,19 @@ passport.use(new GoogleStrategy({
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     callbackURL: process.env.GOOGLE_CALLBACK_URL
   },
-  function(token, tokenSecret, user, done) {
+  function(token, tokenSecret, profile, done) {
 
     console.log(token);
     console.log(tokenSecret);
-    console.log(user);
+    console.log(profile);
 
     // const searchQuery = {
-    //   googleId: user.id
+    //   googleId: profile.id
     // };
 
     // const updates = {
-    //   googleName: user.name,
-    //   googleId: user.id
+    //   googleName: profile.name,
+    //   googleId: profile.id
     // };
 
     // const options = {
