@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 
 // create User Schema
 const UserSchema = new mongoose.Schema({
-  name: String,
-  someID: String
+  googleName: String,
+  googleId: String
 });
 
 
