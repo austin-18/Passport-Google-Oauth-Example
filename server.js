@@ -10,13 +10,13 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const colors = require('colors');
-
+errorHandler = require('./middleware/error');
 
 // load env variables
-dotenv.config({path: './config/config.env)'});
+dotenv.config({path: './config/config.env'});
 
 // connect to mongoDB
-connectDB();
+// connectDB();
 
 // *** routes *** //
 const passportRoutes = require('./routes/passport');
