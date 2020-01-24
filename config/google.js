@@ -1,6 +1,6 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
-
+const mongoose = require('mongoose')
 const User = require('../models/User');
 const passportInit = require('./passport');
 
@@ -11,42 +11,24 @@ passport.use(new GoogleStrategy({
   },
   function(token, tokenSecret, profile, done) {
 
-    console.log(token);
-    console.log(tokenSecret);
-    console.log(profile);
+    const searchQuery = {
+      googleId: profile.id
+    };
 
-    // const searchQuery = {
-    //   googleId: profile.id
-    // };
+    const updates = {
+      googleName: profile.displayName,
+      googleId: profile.id
+    };
 
-    // const updates = {
-    //   googleName: profile.name,
-    //   googleId: profile.id
-    // };
-
-    // const options = {
-    //   upsert: true
-    // };
+    const options = {
+      upsert: true
+    };
 
     // update the user if s/he exists or add a new user
-    // User.findOneAndUpdate(searchQuery, updates, options, function(err, user) {
-    //   if(err) {
-    //     return done(err);
-    //   } else {
-    //     return done(null, user);
-    //   }
-    // });
-
-    // update the user if s/he exists or add a new user
-    const user = User.findOne(searchQuery, function(err, user) {
-      if(err){
+    User.findOneAndUpdate(searchQuery, updates, options, function(err, user) {
+      if(err) {
         return done(err);
-      } else if(!user) {
-        console.log('user not found, creating new user in DB...')
-        user.create(updates)
-        return done(null, user);
       } else {
-        console.log('Existing User Found in DB...')
         return done(null, user);
       }
     });

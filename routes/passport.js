@@ -15,14 +15,20 @@ router.get('/login', function(req, res, next) {
   res.send('Go back and register!');
 });
 
-router.get('/google', passportGoogle.authenticate('google', {scope : ['profile']}));
+router.get('/logout', function(req, res, next) {
+  req.logout()
+  req.session.destroy()
+  res.clearCookie('connect.sid')
+  res.redirect('/api/v1/auth/login')
+});
+
+router.get('/google', passportGoogle.authenticate('google', {scope : ['profile']/*, prompt : "select_account"*/}));
 
 router.get('/google/callback',
-  passportGoogle.authenticate('google', { failureRedirect: '/notAuth' }),
+  passportGoogle.authenticate('google', { failureRedirect: '/api/v1/auth/notAuth', successRedirect: '/api/v1/auth/profile' }),
   function(req, res) {
     // Successful authentication
     res.json(req.user);
-    res.send(req.user);
   });
 
 router.get('/profile', checkGoogleAuth, (req, res) => {
