@@ -8,6 +8,6 @@ exports.checkGoogleAuth = (req, res, next) => {
       return next();
     } else {
       // if they aren't redirect them to the home page
-      res.redirect('/api/v1/auth/notAuth');
+      res.redirect('/api/v1/auth/notAuth')
     }
 }
