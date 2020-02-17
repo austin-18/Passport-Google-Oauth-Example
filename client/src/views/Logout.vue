@@ -16,7 +16,7 @@ export default {
   },
   methods: {
     onLogout(){
-      axios.get('http://localhost:5000/api/v1/auth/logout',{withCredentials:true}).then((res)=>{self.$set(this,'msg',res.data.data)}).catch(err=>(this.msg=err.data.data))
+      axios.get('http://localhost:8080/api/v1/auth/logout',{withCredentials:true}).then((res)=>{self.$set(this,'msg',res.data.data)}).catch(err=>(this.msg=err.data.data))
     }
   }
 }
